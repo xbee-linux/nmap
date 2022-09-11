@@ -1,0 +1,24 @@
+schema-version: 1.0
+
+type: builder
+
+description: |
+  Nmap is a utility for network exploration and security auditing. 
+  It supports ping scanning, port scanning and TCP/IP fingerprinting.
+
+in:
+  version: 7.92
+
+provision:
+  - url:
+      from: https://nmap.org/dist/nmap-{% version %}.tar.bz2
+      todir: "{% xbeeSrc %}"
+
+build:
+  - shell:
+      cmds:
+        - ./configure --prefix=/usr
+        - make
+        - sed -i 's/lib./lib/' zenmap/test/run_tests.py
+        - make install DESTDIR={% xbeeOut %}
+      directory: "{% xbeeSrc %}/nmap-{% version %}"
