@@ -1,7 +1,5 @@
 schema-version: 1.0
 
-type: builder
-
 description: |
   Nmap is a utility for network exploration and security auditing. 
   It supports ping scanning, port scanning and TCP/IP fingerprinting.
